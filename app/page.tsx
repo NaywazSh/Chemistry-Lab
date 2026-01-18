@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { 
   Lock, Sparkles, Unlock, ArrowRight, 
-  Beaker, Hexagon, Dna, Zap, TestTube, Cuboid, Thermometer, Layers 
+  Beaker, Hexagon, Dna, Zap, TestTube, Cuboid, Thermometer, Layers,
+  FileText, Box, Scale, Link2, Timer, Hammer, RefreshCw 
 } from 'lucide-react';
 import { simulationData } from '@/data/simulations';
 
@@ -18,6 +19,13 @@ const SECTIONS = [
   { id: 'Qualitative Analysis', title: 'Qualitative Analysis', icon: TestTube, color: 'violet' },
   { id: 'Polymers', title: 'Chemistry in Everyday Life', icon: Layers, color: 'indigo' },
   { id: 'Thermodynamics', title: 'Thermodynamics', icon: Thermometer, color: 'red' },
+  { id: 'GOC', title: 'Organic Chemistry: Basic Principles', icon: FileText, color: 'orange' },
+  { id: 'Coordination', title: 'Coordination Compounds', icon: Box, color: 'fuchsia' },
+  { id: 'Equilibrium', title: 'Chemical & Ionic Equilibrium', icon: Scale, color: 'cyan' },
+  { id: 'Bonding', title: 'Chemical Bonding & Structure', icon: Link2, color: 'violet' },
+  { id: 'Kinetics', title: 'Chemical Kinetics', icon: Timer, color: 'rose' },
+  { id: 'Metals', title: 'Metals and Non-Metals', icon: Hammer, color: 'slate' },
+  { id: 'Reactions', title: 'Chemical Reactions & Equations', icon: RefreshCw, color: 'blue' },
 ];
 
 export default function Home() {

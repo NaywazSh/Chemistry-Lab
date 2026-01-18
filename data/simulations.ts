@@ -1,7 +1,9 @@
 import { 
   Atom, FlaskConical, Microscope, Dna, Flame, Zap, Snowflake, Droplets, 
   Hexagon, Layers, TestTube2, Workflow, Filter, FlaskRound, 
-  Component, Bean, Battery, Globe, Activity, Thermometer, Link2 
+  Component, Bean, Battery, Globe, Activity, Thermometer, Link2, 
+  // NEW ICONS ADDED HERE:
+  FileText, Split, Box, Scale, Timer, Hammer, RefreshCw
 } from 'lucide-react';
 
 export type Simulation = {
@@ -27,13 +29,13 @@ export const simulationData: Simulation[] = [
   { id: "states-of-matter", title: "States of Matter", desc: "Phase changes: Solid, Liquid, Gas.", isPremium: true, icon: Snowflake, color: "blue", category: "General" },
   { id: "titration", title: "Acid-Base Titration", desc: "Neutralization with pH indicators.", isPremium: true, icon: Droplets, color: "pink", category: "General" },
 
-// --- INORGANIC CHEMISTRY (p-Block & d/f-Block) ---
+  // --- INORGANIC CHEMISTRY ---
   { id: "electronic-config", title: "Electronic Configurations", desc: "Orbital filling rules, shielding effect, and stability of half-filled subshells.", isPremium: true, icon: Layers, color: "sky", category: "Inorganic" },
   { id: "compound-prep", title: "Preparation Methods", desc: "Industrial synthesis: Haber Process (NH₃) and Contact Process (H₂SO₄).", isPremium: true, icon: FlaskRound, color: "sky", category: "Inorganic" },
   { id: "oxidation-states", title: "Oxidation States", desc: "Variable oxidation states in transition metals and stability trends.", isPremium: true, icon: Activity, color: "sky", category: "Inorganic" },
   { id: "ion-colours", title: "Colours of Ions", desc: "d-d transitions and Crystal Field Theory explaining solution colors.", isPremium: true, icon: Filter, color: "sky", category: "Inorganic" },
   { id: "lanthanoid-contraction", title: "Lanthanoid Contraction", desc: "Atomic radii trends and consequences in 4f series.", isPremium: true, icon: Component, color: "sky", category: "Inorganic" },
- 
+
   // --- ORGANIC CHEMISTRY (Grade 12) ---
   { id: "cannizzaro", title: "Cannizzaro Reaction", desc: "Disproportionation of aldehydes.", isPremium: true, icon: FlaskRound, color: "teal", category: "Organic" },
   { id: "aldol", title: "Aldol Condensation", desc: "Formation of β-hydroxy aldehydes.", isPremium: true, icon: Layers, color: "teal", category: "Organic" },
@@ -49,13 +51,35 @@ export const simulationData: Simulation[] = [
   { id: "dna-rna", title: "DNA vs RNA Structure", desc: "Comparing Double Helix vs Single Strand.", isPremium: true, icon: Dna, color: "rose", category: "Biomolecules" },
   { id: "carbohydrates", title: "Glycosidic Linkages", desc: "Sucrose and Maltose bonds.", isPremium: true, icon: Bean, color: "rose", category: "Biomolecules" },
 
-  // --- ELECTROCHEMISTRY (Corrected) ---
+  // --- ELECTROCHEMISTRY ---
   { id: "galvanic-cell", title: "Galvanic/Voltaic Cell", desc: "Redox reactions producing electricity.", isPremium: true, icon: Battery, color: "lime", category: "Electrochemistry" },
   { id: "standard-electrode-potentials", title: "Standard Electrode Potentials", desc: "Measuring voltage under standard conditions.", isPremium: true, icon: Zap, color: "lime", category: "Electrochemistry" },
   { id: "electrochemical-series", title: "Electrochemical Series", desc: "Arrangement of elements by reduction potential.", isPremium: true, icon: Filter, color: "lime", category: "Electrochemistry" },
   { id: "electrolytic-cell", title: "Electrolytic Cell", desc: "Using electrical energy to drive reactions.", isPremium: true, icon: Battery, color: "lime", category: "Electrochemistry" },
   { id: "kohlrauschs-law", title: "Kohlrausch's Law", desc: "Limiting molar conductivity.", isPremium: true, icon: Activity, color: "lime", category: "Electrochemistry" },
   { id: "conductivity-formulas", title: "Conductivity Formulas", desc: "Mathematical relations for conductivity.", isPremium: true, icon: Component, color: "lime", category: "Electrochemistry" },
+
+  // --- ORGANIC CHEMISTRY: BASIC PRINCIPLES (GOC) ---
+  { id: "iupac-basics", title: "IUPAC Nomenclature", desc: "Rules for naming alkanes, alkenes, and functional groups.", isPremium: true, icon: FileText, color: "orange", category: "GOC" },
+  { id: "isomerism-intro", title: "Structural Isomerism", desc: "Chain, Position, and Functional isomers.", isPremium: true, icon: Split, color: "orange", category: "GOC" },
+
+  // --- COORDINATION COMPOUNDS ---
+  { id: "werner-theory", title: "Werner's Theory", desc: "Primary and secondary valencies in complexes.", isPremium: true, icon: Box, color: "fuchsia", category: "Coordination" },
+  
+  // --- EQUILIBRIUM ---
+  { id: "le-chatelier", title: "Le Chatelier's Principle", desc: "Effect of concentration, pressure, and temperature changes.", isPremium: true, icon: Scale, color: "cyan", category: "Equilibrium" },
+
+  // --- CHEMICAL BONDING ---
+  { id: "hybridization", title: "Orbital Hybridization", desc: "sp, sp², sp³ mixing and molecular shapes.", isPremium: true, icon: Link2, color: "violet", category: "Bonding" },
+
+  // --- CHEMICAL KINETICS ---
+  { id: "rate-law", title: "Rate Law Expressions", desc: "Zero, First, and Second order reactions.", isPremium: true, icon: Timer, color: "rose", category: "Kinetics" },
+
+  // --- METALS AND NON-METALS ---
+  { id: "metallurgy-basics", title: "Metallurgy Processes", desc: "Ore concentration, calcination, and roasting.", isPremium: true, icon: Hammer, color: "slate", category: "Metals" },
+
+  // --- CHEMICAL REACTIONS ---
+  { id: "balancing-equations", title: "Balancing Equations", desc: "Law of conservation of mass in reactions.", isPremium: true, icon: RefreshCw, color: "blue", category: "Reactions" },
 
   // --- FUTURE SECTIONS ---
   { id: "salt-analysis", title: "Cation Analysis", desc: "Flame tests and precipitate colors.", isPremium: true, icon: Filter, color: "violet", category: "Qualitative Analysis" },
