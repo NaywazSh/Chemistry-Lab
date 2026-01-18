@@ -101,15 +101,17 @@ export default function Home() {
   );
 }
 
-// Reusable Component for Premium Cards to keep code clean
+// Reusable Component for Premium Cards
 function PremiumCard({ mod }: { mod: any }) {
     return (
-        <Link href="/pricing" className="group relative">
+        // TEMPORARY FIX: Changed href from "/pricing" to the actual simulation link
+        <Link href={`/simulations/${mod.id}`} className="group relative">
             <div className="h-full p-6 rounded-2xl border border-slate-800 bg-slate-900/40 hover:border-amber-500/50 transition-all duration-300 hover:transform hover:-translate-y-1">
             
-            {/* Lock Icon */}
-            <div className="absolute top-4 right-4 text-amber-500 bg-amber-500/10 p-2 rounded-full border border-amber-500/20">
-                <Lock size={14} />
+            {/* Lock Icon - Kept for visuals, but added "Unlocked" state on hover */}
+            <div className="absolute top-4 right-4 text-amber-500 bg-amber-500/10 p-2 rounded-full border border-amber-500/20 group-hover:text-green-400 group-hover:border-green-400 group-hover:bg-green-400/10 transition-all">
+                <Lock size={14} className="group-hover:hidden" />
+                <Unlock size={14} className="hidden group-hover:block" />
             </div>
 
             <div className="flex flex-col items-start gap-4">
@@ -126,8 +128,10 @@ function PremiumCard({ mod }: { mod: any }) {
                     </p>
                 </div>
                 
-                <div className="mt-auto pt-4 flex items-center text-xs font-bold text-amber-600 uppercase tracking-widest gap-1 group-hover:gap-2 transition-all">
-                    Premium <ArrowRight size={12} />
+                <div className="mt-auto pt-4 flex items-center text-xs font-bold text-amber-600 uppercase tracking-widest gap-1 group-hover:gap-2 transition-all group-hover:text-green-500">
+                    <span className="group-hover:hidden">Premium</span>
+                    <span className="hidden group-hover:inline">Click to Test</span>
+                    <ArrowRight size={12} />
                 </div>
             </div>
             </div>
