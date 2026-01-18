@@ -8,7 +8,6 @@ import * as THREE from 'three';
 
 // --- Components ---
 
-// A simple glass beaker with liquid inside
 const Beaker = ({ position, liquidColor, label }: { position: [number, number, number], liquidColor: string, label: string }) => (
   <group position={position}>
     {/* Glass Container */}
@@ -36,15 +35,14 @@ const Beaker = ({ position, liquidColor, label }: { position: [number, number, n
   </group>
 );
 
-// The metal strip (Electrode)
 const Electrode = ({ color, position, name, charge }: { color: string, position: [number, number, number], name: string, charge: string }) => (
   <group position={position}>
     <Box args={[0.4, 3, 0.1]}>
       <meshStandardMaterial color={color} metalness={0.8} roughness={0.2} />
     </Box>
     <Html position={[0, 1.8, 0]} center>
-      <div className="flex flex-col items-center">
-        <span className={`text-xs font-bold px-2 py-1 rounded ${charge === '-' ? 'bg-red-500/80' : 'bg-green-500/80'} text-white`}>
+      <div className="flex flex-col items-center min-w-[100px]">
+        <span className={`text-xs font-bold px-2 py-1 rounded ${charge === '-' ? 'bg-red-500/80' : 'bg-green-500/80'} text-white whitespace-nowrap`}>
           {charge} {name}
         </span>
       </div>
@@ -52,28 +50,31 @@ const Electrode = ({ color, position, name, charge }: { color: string, position:
   </group>
 );
 
-// Animated Electrons flowing through the wire
 const ElectronFlow = () => {
-  const electrons = useMemo(() => Array.from({ length: 10 }), []);
   const groupRef = useRef<THREE.Group>(null);
+  // Create 10 electron dots
+  const electrons = useMemo(() => new Array(10).fill(0), []);
 
   useFrame(({ clock }) => {
     if (groupRef.current) {
       const t = clock.getElapsedTime();
       groupRef.current.children.forEach((el, i) => {
-        // Calculate position along a "wire" path: Up -> Right -> Down
-        // Path logic: Left(-1.5, 2.5) -> TopLeft(-1.5, 3.5) -> TopRight(1.5, 3.5) -> Right(1.5, 2.5)
-        const offset = (t * 0.5 + i * 0.1) % 1; // 0 to 1 cycle
+        // Offset each electron so they don't all move together
+        const offset = (t * 0.5 + i * 0.1) % 1; 
         
         let x = 0, y = 0;
         
-        if (offset < 0.2) { // Moving Up from Zinc
+        // Path: Up -> Right -> Down
+        if (offset < 0.2) { 
+           // Moving Up from Zinc (-1.5, 2.5) to (-1.5, 3.5)
            x = -1.5; 
            y = 2.5 + (offset / 0.2); 
-        } else if (offset < 0.8) { // Moving Across
+        } else if (offset < 0.8) { 
+           // Moving Across to (1.5, 3.5)
            x = -1.5 + ((offset - 0.2) / 0.6) * 3; 
            y = 3.5;
-        } else { // Moving Down to Copper
+        } else { 
+           // Moving Down to Copper (1.5, 2.5)
            x = 1.5;
            y = 3.5 - ((offset - 0.8) / 0.2);
         }
@@ -94,9 +95,7 @@ const ElectronFlow = () => {
   );
 };
 
-// The Salt Bridge (U-tube)
 const SaltBridge = () => {
-  // Create a U-shape curve
   const path = useMemo(() => {
     const curve = new THREE.CurvePath<THREE.Vector3>();
     const p1 = new THREE.Vector3(-0.6, 1.5, 0);
@@ -116,7 +115,7 @@ const SaltBridge = () => {
             <meshStandardMaterial color="#fff" transparent opacity={0.6} />
         </Tube>
         <Text position={[0, 2.2, 0]} fontSize={0.15} color="#333" outlineWidth={0.02} outlineColor="white">
-            Salt Bridge (KNO₃)
+            Salt Bridge
         </Text>
     </group>
   );
@@ -127,68 +126,65 @@ export default function GalvanicCellPage() {
     <SimulationLayout
       title="Galvanic (Voltaic) Cell"
       description="A classic Daniell Cell setup. Chemical energy is converted into electrical energy via spontaneous redox reactions. Zinc oxidizes (anode), releasing electrons that travel to the Copper (cathode) to reduce Cu²⁺ ions."
+      cameraPosition={[0, 1, 6]} // Adjusted camera to see everything clearly
     >
-      <Float speed={1} rotationIntensity={0.2} floatIntensity={0.2}>
-        <group position={[0, -1.5, 0]}>
-          
-          {/* --- LEFT SIDE: ZINC (ANODE) --- */}
-          <Beaker position={[-1.5, 0, 0]} liquidColor="#e2e8f0" label="ZnSO₄ Solution" />
-          <Electrode position={[-1.5, 1.2, 0]} color="#94a3b8" name="Zinc (Anode)" charge="-" />
-          
-          {/* Reaction Label Left */}
-          <Html position={[-2.8, 2, 0]} center>
-            <div className="bg-slate-900/80 p-2 rounded border border-slate-700 text-xs text-slate-300 w-32 text-center">
-              <strong className="text-red-400 block">Oxidation</strong>
-              Zn → Zn²⁺ + 2e⁻
-            </div>
-          </Html>
+      <group position={[0, -1.5, 0]}>
+        
+        {/* --- LEFT SIDE: ZINC (ANODE) --- */}
+        <Beaker position={[-1.5, 0, 0]} liquidColor="#e2e8f0" label="ZnSO₄" />
+        <Electrode position={[-1.5, 1.2, 0]} color="#94a3b8" name="Zinc (Anode)" charge="-" />
+        
+        <Html position={[-2.8, 2, 0]} center>
+          <div className="bg-slate-900/80 p-2 rounded border border-slate-700 text-xs text-slate-300 w-32 text-center backdrop-blur-md">
+            <strong className="text-red-400 block">Oxidation</strong>
+            Zn → Zn²⁺ + 2e⁻
+          </div>
+        </Html>
 
-          {/* --- RIGHT SIDE: COPPER (CATHODE) --- */}
-          <Beaker position={[1.5, 0, 0]} liquidColor="#3b82f6" label="CuSO₄ Solution" />
-          <Electrode position={[1.5, 1.2, 0]} color="#d97706" name="Copper (Cathode)" charge="+" />
+        {/* --- RIGHT SIDE: COPPER (CATHODE) --- */}
+        <Beaker position={[1.5, 0, 0]} liquidColor="#3b82f6" label="CuSO₄" />
+        <Electrode position={[1.5, 1.2, 0]} color="#d97706" name="Copper (Cathode)" charge="+" />
 
-          {/* Reaction Label Right */}
-          <Html position={[2.8, 2, 0]} center>
-            <div className="bg-slate-900/80 p-2 rounded border border-slate-700 text-xs text-slate-300 w-32 text-center">
-              <strong className="text-green-400 block">Reduction</strong>
-              Cu²⁺ + 2e⁻ → Cu
-            </div>
-          </Html>
+        <Html position={[2.8, 2, 0]} center>
+          <div className="bg-slate-900/80 p-2 rounded border border-slate-700 text-xs text-slate-300 w-32 text-center backdrop-blur-md">
+            <strong className="text-green-400 block">Reduction</strong>
+            Cu²⁺ + 2e⁻ → Cu
+          </div>
+        </Html>
 
-          {/* --- CONNECTORS --- */}
-          <SaltBridge />
-          
-          {/* Wire path visual (static lines) */}
-          <group>
-             <mesh position={[-1.5, 3, 0]}>
-                <cylinderGeometry args={[0.02, 0.02, 1, 8]} />
-                <meshStandardMaterial color="#555" />
-             </mesh>
-             <mesh position={[1.5, 3, 0]}>
-                <cylinderGeometry args={[0.02, 0.02, 1, 8]} />
-                <meshStandardMaterial color="#555" />
-             </mesh>
-             <mesh position={[0, 3.5, 0]} rotation={[0, 0, Math.PI/2]}>
-                <cylinderGeometry args={[0.02, 0.02, 3, 8]} />
-                <meshStandardMaterial color="#555" />
-             </mesh>
-          </group>
-
-          {/* Voltmeter */}
-          <group position={[0, 3.5, 0]}>
-            <Box args={[0.8, 0.5, 0.2]}>
-                <meshStandardMaterial color="#333" />
-            </Box>
-            <Text position={[0, 0, 0.11]} fontSize={0.25} color="#4ade80" font="/fonts/Inter-Bold.ttf">
-                1.10 V
-            </Text>
-          </group>
-
-          {/* Animated Electrons */}
-          <ElectronFlow />
-
+        {/* --- CONNECTORS --- */}
+        <SaltBridge />
+        
+        {/* Wires (Static Lines) */}
+        <group>
+           <mesh position={[-1.5, 3, 0]}>
+              <cylinderGeometry args={[0.02, 0.02, 1, 8]} />
+              <meshStandardMaterial color="#555" />
+           </mesh>
+           <mesh position={[1.5, 3, 0]}>
+              <cylinderGeometry args={[0.02, 0.02, 1, 8]} />
+              <meshStandardMaterial color="#555" />
+           </mesh>
+           <mesh position={[0, 3.5, 0]} rotation={[0, 0, Math.PI/2]}>
+              <cylinderGeometry args={[0.02, 0.02, 3, 8]} />
+              <meshStandardMaterial color="#555" />
+           </mesh>
         </group>
-      </Float>
+
+        {/* Voltmeter Box */}
+        <group position={[0, 3.5, 0]}>
+          <Box args={[0.8, 0.5, 0.2]}>
+              <meshStandardMaterial color="#222" />
+          </Box>
+          <Text position={[0, 0, 0.11]} fontSize={0.25} color="#4ade80">
+              1.10 V
+          </Text>
+        </group>
+
+        {/* Moving Electrons */}
+        <ElectronFlow />
+
+      </group>
     </SimulationLayout>
   );
 }
