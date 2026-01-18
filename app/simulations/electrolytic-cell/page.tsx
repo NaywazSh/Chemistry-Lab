@@ -26,7 +26,7 @@ const Tank = () => (
     <Box args={[3.8, 2.3, 1.8]} position={[0, -0.05, 0]}>
         <meshStandardMaterial color="#fcd34d" transparent opacity={0.6} />
     </Box>
-    <Text position={[0, -1.5, 1.1]} fontSize={0.2} color="white">
+    <Text position={[0, -1.6, 1.1]} fontSize={0.25} color="white" outlineWidth={0.02} outlineColor="black">
         Molten NaCl (Electrolyte)
     </Text>
   </group>
@@ -41,8 +41,8 @@ const Electrode = ({ position, charge, label }: { position: [number, number, num
     {/* Label */}
     <Html position={[0, 2.5, 0]} center>
         <div className="flex flex-col items-center">
-            <span className={`text-xl font-bold ${charge === '+' ? 'text-red-500' : 'text-blue-500'}`}>{charge}</span>
-            <span className="text-xs font-bold text-slate-300 bg-slate-900/80 px-2 py-1 rounded border border-slate-700 whitespace-nowrap">
+            <span className={`text-2xl font-bold ${charge === '+' ? 'text-red-500' : 'text-blue-500'}`}>{charge}</span>
+            <span className="text-xs font-bold text-slate-300 bg-slate-900/90 px-2 py-1 rounded border border-slate-700 whitespace-nowrap backdrop-blur-md">
                 {label}
             </span>
         </div>
@@ -61,7 +61,7 @@ const Battery = () => (
         <Cylinder args={[0.1, 0.1, 0.2]} position={[0, 0.8, 0]}>
             <meshStandardMaterial color="#ef4444" />
         </Cylinder>
-        <Text position={[0, 1.2, 0]} rotation={[0, 0, -Math.PI/2]} fontSize={0.2} color="white">DC Power Source</Text>
+        <Text position={[0, 1.2, 0]} rotation={[0, 0, -Math.PI/2]} fontSize={0.3} color="white" outlineWidth={0.02} outlineColor="black">DC Power</Text>
         
         {/* Wires */}
         <mesh position={[0, 0.8, 0]}>
@@ -86,7 +86,6 @@ const IonMigration = () => {
             const t = clock.getElapsedTime();
             ref.current.children.forEach((mesh, i) => {
                 const isSodium = i < 15;
-                const speed = isSodium ? 0.5 : -0.5; // Na moves Right (Cathode), Cl moves Left (Anode)
                 const xBase = isSodium ? -1 : 1;
                 
                 // Reset loop
@@ -114,7 +113,6 @@ const IonMigration = () => {
                     <Sphere args={[0.1, 16, 16]}>
                         <meshStandardMaterial color="#a855f7" />
                     </Sphere>
-                    {/* Only render text if scale is normal to save perf, simplifed here */}
                 </group>
             ))}
             {/* Chlorine Ions (Green) */}
@@ -170,9 +168,10 @@ export default function ElectrolyticCellPage() {
     <SimulationLayout
       title="Electrolytic Cell (Molten NaCl)"
       description="Electrical energy drives a non-spontaneous reaction. Cl⁻ ions migrate to the Anode (+) to form Chlorine gas. Na⁺ ions migrate to the Cathode (-) to form Sodium metal."
+      cameraPosition={[0, 1, 9]} // Fix: Moved camera back to see everything
     >
       <Float speed={1} rotationIntensity={0.1} floatIntensity={0.2}>
-        <group>
+        <group scale={0.85}> {/* Fix: Scaled down slightly to fit labels */}
           
           <Battery />
           <Tank />
@@ -196,37 +195,37 @@ export default function ElectrolyticCellPage() {
              <meshStandardMaterial color="black" />
           </mesh>
 
-          {/* Reaction Panels */}
-          <Html position={[-3.5, 0, 0]} center>
-             <div className="bg-slate-900/80 p-3 border border-red-500/50 rounded-xl w-40 backdrop-blur-md">
+          {/* Reaction Panels - Moved closer to center */}
+          <Html position={[-3.0, 0, 0]} center>
+             <div className="bg-slate-900/80 p-3 border border-red-500/50 rounded-xl w-40 backdrop-blur-md shadow-xl">
                 <div className="text-red-400 font-bold text-sm mb-1">Oxidation (Anode)</div>
-                <div className="text-slate-300 text-xs">
+                <div className="text-slate-300 text-xs font-mono">
                     2Cl⁻ → Cl₂ + 2e⁻
                 </div>
-                <div className="text-green-300 text-[10px] mt-1">(Chlorine Gas)</div>
+                <div className="text-green-300 text-[10px] mt-1 italic">(Chlorine Gas)</div>
              </div>
           </Html>
 
-          <Html position={[3.5, 0, 0]} center>
-             <div className="bg-slate-900/80 p-3 border border-blue-500/50 rounded-xl w-40 backdrop-blur-md">
+          <Html position={[3.0, 0, 0]} center>
+             <div className="bg-slate-900/80 p-3 border border-blue-500/50 rounded-xl w-40 backdrop-blur-md shadow-xl">
                 <div className="text-blue-400 font-bold text-sm mb-1">Reduction (Cathode)</div>
-                <div className="text-slate-300 text-xs">
+                <div className="text-slate-300 text-xs font-mono">
                     Na⁺ + e⁻ → Na
                 </div>
-                <div className="text-slate-400 text-[10px] mt-1">(Sodium Metal)</div>
+                <div className="text-slate-400 text-[10px] mt-1 italic">(Sodium Metal)</div>
              </div>
           </Html>
 
           {/* Legend */}
-          <Html position={[0, -2.5, 0]} center>
-            <div className="flex gap-4 bg-black/60 p-2 rounded-full">
+          <Html position={[0, -2.8, 0]} center>
+            <div className="flex gap-4 bg-black/60 p-2 rounded-full border border-slate-700 backdrop-blur-md">
                 <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-purple-500"></span>
-                    <span className="text-xs text-white">Na⁺</span>
+                    <span className="w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_10px_#a855f7]"></span>
+                    <span className="text-xs text-white font-bold">Na⁺</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                    <span className="text-xs text-white">Cl⁻</span>
+                    <span className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></span>
+                    <span className="text-xs text-white font-bold">Cl⁻</span>
                 </div>
             </div>
           </Html>
