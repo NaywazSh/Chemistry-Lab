@@ -1,16 +1,17 @@
-import { Atom, FlaskConical, Microscope, Dna, Flame, Zap, Snowflake, Droplets } from 'lucide-react';
+import { Atom, FlaskConical, Microscope, Dna, Flame, Zap, Snowflake, Droplets, Hexagon, TestTube2, FlaskRound, Workflow, Layers, Filter } from 'lucide-react';
 
 export type Simulation = {
-  id: string;          // The folder name (e.g., 'sodium-water')
-  title: string;       // Display title
-  desc: string;        // Short description
-  isPremium: boolean;  // true = PAID, false = FREE
-  icon: any;           // The icon component
-  color: string;       // Color theme
+  id: string;
+  title: string;
+  desc: string;
+  isPremium: boolean;
+  icon: any;
+  color: string;
+  category?: 'General' | 'Organic'; // <--- NEW FIELD
 };
 
 export const simulationData: Simulation[] = [
-  // --- THE FREE 4 ---
+  // --- FREE SIMULATIONS ---
   {
     id: "atomic-structure",
     title: "Atomic Structure",
@@ -44,14 +45,15 @@ export const simulationData: Simulation[] = [
     color: "amber"
   },
 
-  // --- THE PAID 50+ (Examples) ---
+  // --- PREMIUM: GENERAL CHEMISTRY ---
   {
     id: "combustion",
     title: "Combustion Reaction",
     desc: "Hydrocarbon burning in oxygen to produce CO2 and H2O.",
     isPremium: true,
     icon: Flame,
-    color: "orange"
+    color: "orange",
+    category: "General"
   },
   {
     id: "electrolysis",
@@ -59,7 +61,8 @@ export const simulationData: Simulation[] = [
     desc: "Splitting water molecules using electric current.",
     isPremium: true,
     icon: Zap,
-    color: "yellow"
+    color: "yellow",
+    category: "General"
   },
   {
     id: "states-of-matter",
@@ -67,7 +70,8 @@ export const simulationData: Simulation[] = [
     desc: "Phase changes from Solid to Liquid to Gas.",
     isPremium: true,
     icon: Snowflake,
-    color: "blue"
+    color: "blue",
+    category: "General"
   },
   {
     id: "titration",
@@ -75,7 +79,72 @@ export const simulationData: Simulation[] = [
     desc: "Neutralization simulation with pH indicators.",
     isPremium: true,
     icon: Droplets,
-    color: "pink"
+    color: "pink",
+    category: "General"
   },
-  // ... You can keep adding here endlessly
+
+  // --- PREMIUM: ORGANIC CHEMISTRY (NEW SECTION) ---
+  {
+    id: "cannizzaro",
+    title: "Cannizzaro Reaction",
+    desc: "Disproportionation of non-enolizable aldehydes.",
+    isPremium: true,
+    icon: FlaskRound,
+    color: "teal",
+    category: "Organic"
+  },
+  {
+    id: "aldol",
+    title: "Aldol Condensation",
+    desc: "Formation of β-hydroxy aldehydes from enolizable ketones.",
+    isPremium: true,
+    icon: Layers,
+    color: "teal",
+    category: "Organic"
+  },
+  {
+    id: "clemmensen",
+    title: "Clemmensen Reduction",
+    desc: "Reduction of ketones/aldehydes to alkanes using Zn-Hg.",
+    isPremium: true,
+    icon: TestTube2,
+    color: "teal",
+    category: "Organic"
+  },
+  {
+    id: "wolff-kishner",
+    title: "Wolff-Kishner Reduction",
+    desc: "Deoxygenation using Hydrazine and strong base.",
+    isPremium: true,
+    icon: Hexagon,
+    color: "teal",
+    category: "Organic"
+  },
+  {
+    id: "reimer-tiemann",
+    title: "Reimer-Tiemann",
+    desc: "Ortho-formylation of phenols to synthesize salicylaldehyde.",
+    isPremium: true,
+    icon: FlaskConical,
+    color: "teal",
+    category: "Organic"
+  },
+  {
+    id: "catalysts",
+    title: "Organic Catalysts",
+    desc: "Visualizing activation energy reduction in reactions.",
+    isPremium: true,
+    icon: Workflow,
+    color: "teal",
+    category: "Organic"
+  },
+  {
+    id: "reagents",
+    title: "Reagents Dictionary",
+    desc: "3D library of Grignard, Tollens, and Lucas reagents.",
+    isPremium: true,
+    icon: Filter,
+    color: "teal",
+    category: "Organic"
+  }
 ];
