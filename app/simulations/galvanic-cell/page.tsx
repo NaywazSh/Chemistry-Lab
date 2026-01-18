@@ -131,7 +131,7 @@ export default function GalvanicCellPage() {
       <group position={[0, -1.5, 0]}>
         
         {/* --- LEFT SIDE: ZINC (ANODE) --- */}
-        <Beaker position={[-1.5, 0, 0]} liquidColor="#e2e8f0" label="ZnSO₄" />
+        <Beaker position={[-1.5, 0, 0]} liquidColor="#e2e8f0" label="ZnSO4" />
         <Electrode position={[-1.5, 1.2, 0]} color="#94a3b8" name="Zinc (Anode)" charge="-" />
         
         <Html position={[-2.8, 2, 0]} center>
@@ -142,7 +142,7 @@ export default function GalvanicCellPage() {
         </Html>
 
         {/* --- RIGHT SIDE: COPPER (CATHODE) --- */}
-        <Beaker position={[1.5, 0, 0]} liquidColor="#3b82f6" label="CuSO₄" />
+        <Beaker position={[1.5, 0, 0]} liquidColor="#3b82f6" label="CuSO4" />
         <Electrode position={[1.5, 1.2, 0]} color="#d97706" name="Copper (Cathode)" charge="+" />
 
         <Html position={[2.8, 2, 0]} center>

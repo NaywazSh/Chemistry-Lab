@@ -44,12 +44,16 @@ export const simulationData: Simulation[] = [
   { id: "reimer-tiemann", title: "Reimer-Tiemann", desc: "Formation of Salicylaldehyde.", isPremium: true, icon: FlaskConical, color: "teal", category: "Organic" },
   { id: "catalysts", title: "Organic Catalysts", desc: "Reaction energy profiles.", isPremium: true, icon: Workflow, color: "teal", category: "Organic" },
   { id: "reagents", title: "Reagents Dictionary", desc: "Grignard, Tollens, etc.", isPremium: true, icon: Filter, color: "teal", category: "Organic" },
+  { id: "reimer-tiemann-str", title: "Reimer-Tiemann Structure", desc: "Structural analysis of the intermediate and final Salicylaldehyde product.", isPremium: true, icon: FlaskConical, color: "teal", category: "Organic" },
+{ id: "catalysts-str", title: "Catalysts Structure", desc: "3D molecular view of heterogeneous catalyst surfaces.", isPremium: true, icon: Workflow, color: "teal", category: "Organic" },
+{ id: "reagents-str", title: "Reagents Structure", desc: "Detailed molecular geometry of Grignard and Tollens reagents.", isPremium: true, icon: Filter, color: "teal", category: "Organic" },
 
   // --- BIOMOLECULES ---
   { id: "amino-acids", title: "Amino Acid Structures", desc: "3D visualization of Glycine, Alanine.", isPremium: true, icon: Component, color: "rose", category: "Biomolecules" },
   { id: "peptide-bond", title: "Peptide Bond Formation", desc: "Condensation reaction between amino acids.", isPremium: true, icon: Link2, color: "rose", category: "Biomolecules" },
   { id: "dna-rna", title: "DNA vs RNA Structure", desc: "Comparing Double Helix vs Single Strand.", isPremium: true, icon: Dna, color: "rose", category: "Biomolecules" },
   { id: "carbohydrates", title: "Glycosidic Linkages", desc: "Sucrose and Maltose bonds.", isPremium: true, icon: Bean, color: "rose", category: "Biomolecules" },
+  { id: "peptide-bond-str", title: "Peptide Structure", desc: "Detailed structural view of the amide linkage plane.", isPremium: true, icon: Link2, color: "rose", category: "Biomolecules" },
 
   // --- ELECTROCHEMISTRY ---
   { id: "galvanic-cell", title: "Galvanic/Voltaic Cell", desc: "Redox reactions producing electricity.", isPremium: true, icon: Battery, color: "lime", category: "Electrochemistry" },
