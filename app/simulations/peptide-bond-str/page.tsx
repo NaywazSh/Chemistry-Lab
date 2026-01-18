@@ -46,7 +46,7 @@ export default function PeptideBondPage() {
 
           {/* Reaction Arrow */}
           <group position={[0, -1.5, 0]}>
-             <Text fontSize={0.3} color="#fbbf24">Water (H₂O) Released</Text>
+             <Text fontSize={0.3} color="#fbbf24">Water (H2O) Released</Text>
              <Sphere args={[0.1, 32, 32]} position={[0, 0.5, 0]}><meshStandardMaterial color="#38bdf8" /></Sphere>
           </group>
 
