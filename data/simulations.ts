@@ -37,7 +37,7 @@ export const simulationData: Simulation[] = [
   // --- BIOMOLECULES (New Section) ---
   { id: "amino-acids", title: "Amino Acid Structures", desc: "3D visualization of Glycine, Alanine, and R-groups.", isPremium: true, icon: Component, color: "rose", category: "Biomolecules" },
   { id: "peptide-bond", title: "Peptide Bond Form Reaction", desc: "Condensation reaction between amino acids.", isPremium: true, icon: Link2, color: "rose", category: "Biomolecules" },
-   { id: "peptide-bond", title: "Peptide Bond Formation Structure", desc: " Shows two how amino acids bond together.", isPremium: true, icon: Link2, color: "rose", category: "Biomolecules" },
+   { id: "peptide-bond-str", title: "Peptide Bond Formation Structure", desc: " Shows two how amino acids bond together.", isPremium: true, icon: Link2, color: "rose", category: "Biomolecules" },
   { id: "dna-rna", title: "DNA vs RNA Structure", desc: "Comparing Double Helix vs Single Strand.", isPremium: true, icon: Dna, color: "rose", category: "Biomolecules" },
   { id: "carbohydrates", title: "Glycosidic Linkages", desc: "Sucrose (α-1,2) and Maltose (α-1,4) bonds.", isPremium: true, icon: Bean, color: "rose", category: "Biomolecules" },
 
