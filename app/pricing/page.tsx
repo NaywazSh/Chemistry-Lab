@@ -17,8 +17,8 @@ export default function PricingPage() {
         <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-amber-400 to-orange-600" />
         
         <div className="flex items-baseline gap-2 mb-6">
-          <span className="text-5xl font-bold text-white">$29</span>
-          <span className="text-slate-500">/year</span>
+          <span className="text-5xl font-bold text-white">$9.99</span>
+          <span className="text-slate-500">/month</span>
         </div>
 
         <ul className="space-y-4 mb-8 text-slate-300">
