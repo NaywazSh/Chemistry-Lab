@@ -1,63 +1,111 @@
 import Link from 'next/link';
-import { Lock } from 'lucide-react';
+import { Lock, Sparkles, Unlock } from 'lucide-react';
 import { simulationData } from '@/data/simulations';
 
 export default function Home() {
+  // 1. Split the data into two lists automatically
+  const freeModules = simulationData.filter((mod) => !mod.isPremium);
+  const premiumModules = simulationData.filter((mod) => mod.isPremium);
+
   return (
-    <main className="min-h-screen p-8 md:p-24 max-w-7xl mx-auto">
-      {/* Header */}
-      <header className="mb-16 text-center">
+    <main className="min-h-screen bg-[#020617]">
+      
+      {/* --- HERO SECTION --- */}
+      <div className="pt-20 pb-12 text-center px-6">
         <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-6">
           Virtual ChemLab
         </h1>
         <p className="text-xl text-slate-400 max-w-2xl mx-auto">
           Interactive 3D simulations for Grade 9-12 Chemistry.
         </p>
-      </header>
+      </div>
 
-      {/* Dynamic Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {simulationData.map((mod) => (
-          <Link key={mod.id} href={mod.isPremium ? '/pricing' : `/simulations/${mod.id}`} className="group relative">
-            <div className={`h-full p-8 rounded-2xl border transition-all duration-300 hover:transform hover:-translate-y-1 overflow-hidden
-              ${mod.isPremium 
-                ? 'bg-slate-900/40 border-slate-800 hover:border-amber-500/50' 
-                : 'bg-slate-800/50 backdrop-blur-sm border-slate-700 hover:border-cyan-500/50'
-              }
-            `}>
-              
-              {/* Premium Lock Overlay */}
-              {mod.isPremium && (
-                <div className="absolute top-4 right-4 text-amber-500 bg-amber-500/10 p-2 rounded-full">
+      {/* --- FREE SECTION --- */}
+      <section className="max-w-7xl mx-auto px-6 mb-20">
+        <div className="flex items-center gap-2 mb-8 border-b border-slate-800 pb-4">
+          <Unlock className="text-cyan-400" size={24} />
+          <h2 className="text-2xl font-bold text-white">Free Simulations</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {freeModules.map((mod) => (
+            <Link key={mod.id} href={`/simulations/${mod.id}`} className="group relative">
+              <div className="h-full p-8 rounded-2xl border border-slate-700 bg-slate-800/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 hover:transform hover:-translate-y-1">
+                <div className="flex flex-col items-start gap-4">
+                  <div className={`p-4 rounded-xl border border-slate-700 bg-slate-900 shadow-lg`}>
+                    <mod.icon size={40} className={`text-${mod.color}-400`} />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                      {mod.title}
+                    </h2>
+                    <p className="text-slate-400 text-sm mt-2 leading-relaxed">
+                      {mod.desc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* --- PREMIUM BANNER / DIVIDER --- */}
+      <div className="w-full bg-gradient-to-r from-amber-900/20 via-amber-600/10 to-amber-900/20 border-y border-amber-500/30 py-16 mb-16 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/50 text-sm font-bold uppercase tracking-widest mb-4">
+            <Sparkles size={14} /> Premium Access
+          </div>
+          <h2 className="text-4xl font-bold text-white mb-4">Unlock the Full Laboratory</h2>
+          <p className="text-slate-300 mb-8 max-w-xl mx-auto">
+            Get instant access to 50+ advanced reaction simulations, organic chemistry modules, and physics integrations.
+          </p>
+          <div className="inline-block bg-slate-900 border border-amber-500/50 rounded-xl px-8 py-4 shadow-xl shadow-amber-900/20">
+            <span className="text-3xl font-bold text-white">$9.99</span>
+            <span className="text-slate-400">/month</span>
+          </div>
+        </div>
+        
+        {/* Decorative Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-600/20 blur-[100px] rounded-full pointer-events-none" />
+      </div>
+
+      {/* --- PAID SECTION --- */}
+      <section className="max-w-7xl mx-auto px-6 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-80 hover:opacity-100 transition-opacity">
+          {premiumModules.map((mod) => (
+            <Link key={mod.id} href="/pricing" className="group relative">
+              <div className="h-full p-8 rounded-2xl border border-amber-900/30 bg-slate-900/40 hover:border-amber-500/50 transition-all duration-300 hover:transform hover:-translate-y-1">
+                
+                {/* Lock Icon */}
+                <div className="absolute top-4 right-4 text-amber-500 bg-amber-500/10 p-2 rounded-full border border-amber-500/20">
                   <Lock size={16} />
                 </div>
-              )}
 
-              <div className="relative z-10 flex flex-col items-start gap-4">
-                <div className={`p-4 rounded-xl border shadow-lg ${mod.isPremium ? 'bg-slate-950 border-amber-900/30' : 'bg-slate-900 border-slate-700'}`}>
-                  {/* Render the icon dynamically */}
-                  <mod.icon size={40} className={mod.isPremium ? 'text-amber-500' : `text-${mod.color}-400`} />
-                </div>
-                
-                <div>
-                  <h2 className={`text-2xl font-bold transition-colors ${mod.isPremium ? 'text-slate-300 group-hover:text-amber-400' : 'text-white group-hover:text-cyan-300'}`}>
-                    {mod.title}
-                  </h2>
-                  <p className="text-slate-500 text-sm mt-2 leading-relaxed">
-                    {mod.desc}
-                  </p>
-                </div>
+                <div className="flex flex-col items-start gap-4">
+                  <div className="p-4 rounded-xl border border-amber-900/30 bg-slate-950 shadow-lg">
+                    <mod.icon size={40} className="text-amber-500/70 group-hover:text-amber-500 transition-colors" />
+                  </div>
+                  
+                  <div>
+                    <h2 className="text-2xl font-bold text-slate-300 group-hover:text-amber-400 transition-colors">
+                      {mod.title}
+                    </h2>
+                    <p className="text-slate-500 text-sm mt-2 leading-relaxed">
+                      {mod.desc}
+                    </p>
+                  </div>
 
-                {mod.isPremium && (
-                   <span className="text-xs font-bold text-amber-500 uppercase tracking-widest mt-auto border border-amber-500/20 px-2 py-1 rounded">
-                     Premium Content
-                   </span>
-                )}
+                  <span className="text-xs font-bold text-amber-600 uppercase tracking-widest mt-auto border border-amber-900/50 px-2 py-1 rounded bg-amber-950/30">
+                     Premium
+                  </span>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
     </main>
   );
 }
