@@ -33,7 +33,11 @@ export const simulationData: Simulation[] = [
   { id: "aldol", title: "Aldol Condensation", desc: "Formation of β-hydroxy aldehydes.", isPremium: true, icon: Layers, color: "teal", category: "Organic" },
   { id: "clemmensen", title: "Clemmensen Reduction", desc: "Ketones to alkanes using Zn-Hg.", isPremium: true, icon: TestTube2, color: "teal", category: "Organic" },
   { id: "wolff-kishner", title: "Wolff-Kishner Reduction", desc: "Reduction using Hydrazine.", isPremium: true, icon: Hexagon, color: "teal", category: "Organic" },
-  
+  { id: "reimer-tiemann", title: "Reimer-Tiemann", desc: "Ortho-formylation of phenols to synthesize salicylaldehyde.", isPremium: true, icon: FlaskConical, color: "teal", category: "Organic" },
+{ id: "catalysts", title: "Organic Catalysts", desc: "Visualizing activation energy reduction in reactions.", isPremium: true, icon: Workflow, color: "teal", category: "Organic" },
+{ id: "reagents", title: "Reagents Dictionary", desc: "3D library of Grignard, Tollens, and Lucas reagents.", isPremium: true, icon: Filter, color: "teal", category: "Organic" },
+
+
   // --- BIOMOLECULES (New Section) ---
   { id: "amino-acids", title: "Amino Acid Structures", desc: "3D visualization of Glycine, Alanine, and R-groups.", isPremium: true, icon: Component, color: "rose", category: "Biomolecules" },
   { id: "peptide-bond", title: "Peptide Bond Form Reaction", desc: "Condensation reaction between amino acids.", isPremium: true, icon: Link2, color: "rose", category: "Biomolecules" },
