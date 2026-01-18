@@ -31,7 +31,7 @@ const Grignard = () => (
         </Sphere> 
 
         <Html position={[0, -2, 0]} center>
-            <div className="bg-black/50 text-amber-400 p-1 rounded backdrop-blur-md">R-Mg-X</div>
+            <div className="bg-black/50 text-amber-400 p-2 rounded backdrop-blur-md whitespace-nowrap text-sm font-bold">R-Mg-X</div>
         </Html>
     </group>
 );
@@ -65,7 +65,7 @@ const Tollens = () => (
         </group>
 
         <Html position={[0, -1.5, 0]} center>
-            <div className="bg-black/50 text-slate-300 p-1 rounded backdrop-blur-md">[Ag(NH₃)₂]⁺</div>
+            <div className="bg-black/50 text-slate-300 p-2 rounded backdrop-blur-md whitespace-nowrap text-sm font-bold">[Ag(NH₃)₂]⁺</div>
         </Html>
     </group>
 );
@@ -86,9 +86,13 @@ export default function ReagentsPage() {
         {active === 0 ? <Grignard /> : <Tollens />}
       </Float>
 
-      {/* HTML Overlay Controls */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-          <div className="flex gap-4 bg-slate-900/80 p-4 rounded-xl border border-slate-700 backdrop-blur-md shadow-2xl">
+      {/* 
+         FIX IS HERE: 
+         Wrapped the UI in the <Html> tag. 
+         This puts it "inside" the 3D world but renders it as normal HTML buttons.
+      */}
+      <Html position={[0, -3, 0]} center zIndexRange={[100, 0]}>
+          <div className="flex gap-4 bg-slate-900/80 p-4 rounded-xl border border-slate-700 backdrop-blur-md shadow-2xl w-max">
               <button 
                 onClick={() => setActive(0)} 
                 className={`px-4 py-2 rounded-lg transition-colors font-bold ${active===0 ? 'bg-teal-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
@@ -102,7 +106,7 @@ export default function ReagentsPage() {
                 Tollens
               </button>
           </div>
-      </div>
+      </Html>
     </SimulationLayout>
   );
 }
