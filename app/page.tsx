@@ -1,36 +1,6 @@
 import Link from 'next/link';
-import { Atom, FlaskConical, Microscope } from 'lucide-react';
-
-const modules = [
-  {
-    title: "Atomic Structure",
-    desc: "Visualize the Bohr model and electron orbitals in 3D space.",
-    link: "/simulations/atomic-structure",
-    icon: <Atom size={40} className="text-cyan-400" />,
-    gradient: "from-blue-500/20 to-cyan-500/20"
-  },
-  {
-    title: "Molecular Geometry",
-    desc: "VSEPR theory explorer. See Water, Ammonia, and Methane shapes.",
-    link: "/simulations/molecules",
-    icon: <FlaskConical size={40} className="text-purple-400" />,
-    gradient: "from-purple-500/20 to-pink-500/20"
-  },
-  {
-    title: "Crystalline Solids",
-    desc: "Explore FCC, BCC, and HCP lattice structures.",
-    link: "/simulations/crystals", // You can add this page later
-    icon: <Microscope size={40} className="text-emerald-400" />,
-    gradient: "from-emerald-500/20 to-teal-500/20"
-  },
-  {
-    title: "Biochemistry: DNA",
-    desc: "Explore the double helix structure and base pairs of DNA.",
-    link: "/simulations/dna",
-    icon: <div className="text-amber-400 font-bold text-xl">DNA</div>,
-    gradient: "from-amber-500/20 to-orange-500/20"
-  }
-];
+import { Lock } from 'lucide-react';
+import { simulationData } from '@/data/simulations';
 
 export default function Home() {
   return (
@@ -41,29 +11,48 @@ export default function Home() {
           Virtual ChemLab
         </h1>
         <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-          Interactive 3D simulations for Grade 9-12 Chemistry. Explore reactions, 
-          structures, and bonds in a real-time environment.
+          Interactive 3D simulations for Grade 9-12 Chemistry.
         </p>
       </header>
 
-      {/* Grid */}
+      {/* Dynamic Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {modules.map((mod, idx) => (
-          <Link key={idx} href={mod.link} className="group relative">
-            <div className={`h-full p-8 rounded-2xl border border-slate-700 bg-slate-800/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 hover:transform hover:-translate-y-1 overflow-hidden`}>
-              {/* Background Glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${mod.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+        {simulationData.map((mod) => (
+          <Link key={mod.id} href={mod.isPremium ? '/pricing' : `/simulations/${mod.id}`} className="group relative">
+            <div className={`h-full p-8 rounded-2xl border transition-all duration-300 hover:transform hover:-translate-y-1 overflow-hidden
+              ${mod.isPremium 
+                ? 'bg-slate-900/40 border-slate-800 hover:border-amber-500/50' 
+                : 'bg-slate-800/50 backdrop-blur-sm border-slate-700 hover:border-cyan-500/50'
+              }
+            `}>
               
-              <div className="relative z-10 flex flex-col items-start gap-4">
-                <div className="p-4 bg-slate-900 rounded-xl border border-slate-700 shadow-lg">
-                  {mod.icon}
+              {/* Premium Lock Overlay */}
+              {mod.isPremium && (
+                <div className="absolute top-4 right-4 text-amber-500 bg-amber-500/10 p-2 rounded-full">
+                  <Lock size={16} />
                 </div>
-                <h2 className="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                  {mod.title}
-                </h2>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  {mod.desc}
-                </p>
+              )}
+
+              <div className="relative z-10 flex flex-col items-start gap-4">
+                <div className={`p-4 rounded-xl border shadow-lg ${mod.isPremium ? 'bg-slate-950 border-amber-900/30' : 'bg-slate-900 border-slate-700'}`}>
+                  {/* Render the icon dynamically */}
+                  <mod.icon size={40} className={mod.isPremium ? 'text-amber-500' : `text-${mod.color}-400`} />
+                </div>
+                
+                <div>
+                  <h2 className={`text-2xl font-bold transition-colors ${mod.isPremium ? 'text-slate-300 group-hover:text-amber-400' : 'text-white group-hover:text-cyan-300'}`}>
+                    {mod.title}
+                  </h2>
+                  <p className="text-slate-500 text-sm mt-2 leading-relaxed">
+                    {mod.desc}
+                  </p>
+                </div>
+
+                {mod.isPremium && (
+                   <span className="text-xs font-bold text-amber-500 uppercase tracking-widest mt-auto border border-amber-500/20 px-2 py-1 rounded">
+                     Premium Content
+                   </span>
+                )}
               </div>
             </div>
           </Link>
