@@ -1,7 +1,8 @@
 import { 
   Atom, FlaskConical, Microscope, Dna, Flame, Zap, Snowflake, Droplets, 
   Hexagon, Layers, TestTube2, Workflow, Filter, FlaskRound, 
-  Component, Bean, Battery, Globe, Activity, Thermometer, Link2 
+  Component, Bean, Battery, Globe, Activity, Thermometer, Link2, 
+  ZapOff
 } from 'lucide-react';
 
 // Define the shape of a simulation object
@@ -48,8 +49,15 @@ export const simulationData: Simulation[] = [
   { id: "dna-rna", title: "DNA vs RNA Structure", desc: "Comparing Double Helix vs Single Strand.", isPremium: true, icon: Dna, color: "rose", category: "Biomolecules" },
   { id: "carbohydrates", title: "Glycosidic Linkages", desc: "Sucrose (α-1,2) and Maltose (α-1,4) bonds.", isPremium: true, icon: Bean, color: "rose", category: "Biomolecules" },
 
+  //--- ELECTRO CHEMISTRY (New Section)
+{ id: "galvanic-cell", title: "Galvanic/Voltaic Cell", desc: "Redox reactions producing electricity.", isPremium: true, icon: Battery, color: "lime", category: "Electrochemistry" },
+{ id: "standard-electrode-potentials", title: "Standard Electrode Potentials", desc: "Measuring voltage under standard conditions ($25°C$, $1M$, $1 atm$).", isPremium: true, icon: Thermometer, color: "blue", category: "Electrochemistry" },
+{ id: "electrochemical-series", title: "Electrochemical Series", desc: "Arrangement of elements by their standard reduction potentials.", isPremium: false, icon:ZapOff, color: "purple", category: "Electrochemistry" },
+{ id: "electrolytic-cell", title: "Electrolytic Cell", desc: "Using electrical energy to drive non-spontaneous chemical reactions.", isPremium: true, icon: Zap, color: "yellow", category: "Electrochemistry" },
+{ id: "kohlrauschs-law", title: "Kohlrausch's Law", desc: "Limiting molar conductivity of electrolytes at infinite dilution.", isPremium: false, icon: Activity, color: "orange", category: "Electrochemistry" },
+{ id: "conductivity-formulas", title: "Conductivity Formulas", desc: "Mathematical relations for specific, equivalent, and molar conductivity.", isPremium: true, icon: Function, color: "cyan", category: "Electrochemistry" },
+
   // --- FUTURE SECTIONS (Ready for expansion) ---
-  { id: "galvanic-cell", title: "Galvanic/Voltaic Cell", desc: "Redox reactions producing electricity.", isPremium: true, icon: Battery, color: "lime", category: "Electrochemistry" },
   { id: "salt-analysis", title: "Cation Analysis", desc: "Flame tests and precipitate colors.", isPremium: true, icon: Filter, color: "violet", category: "Qualitative Analysis" },
   { id: "polymers", title: "Polymerization", desc: "Addition vs Condensation polymers.", isPremium: true, icon: Activity, color: "indigo", category: "Polymers" },
   { id: "thermodynamics", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
