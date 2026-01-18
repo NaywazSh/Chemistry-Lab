@@ -36,6 +36,9 @@ export const simulationData: Simulation[] = [
   { id: "reimer-tiemann", title: "Reimer-Tiemann", desc: "Ortho-formylation of phenols to synthesize salicylaldehyde.", isPremium: true, icon: FlaskConical, color: "teal", category: "Organic" },
 { id: "catalysts", title: "Organic Catalysts", desc: "Visualizing activation energy reduction in reactions.", isPremium: true, icon: Workflow, color: "teal", category: "Organic" },
 { id: "reagents", title: "Reagents Dictionary", desc: "3D library of Grignard, Tollens, and Lucas reagents.", isPremium: true, icon: Filter, color: "teal", category: "Organic" },
+{ id: "reimer-tiemann-str", title: "Reimer-Tiemann Structure", desc: "Understanding basic forms", isPremium: true, icon: FlaskConical, color: "teal", category: "Organic" },
+{ id: "catalysts-str", title: "Organic Catalysts Structure", desc: "Understanding basic forms.", isPremium: true, icon: Workflow, color: "teal", category: "Organic" },
+{ id: "reagents-str", title: "Reagents Structure", desc: "Understanding basic forms", isPremium: true, icon: Filter, color: "teal", category: "Organic" },
 
 
   // --- BIOMOLECULES (New Section) ---
