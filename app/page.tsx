@@ -22,6 +22,13 @@ const modules = [
     link: "/simulations/crystals", // You can add this page later
     icon: <Microscope size={40} className="text-emerald-400" />,
     gradient: "from-emerald-500/20 to-teal-500/20"
+  },
+  {
+    title: "Biochemistry: DNA",
+    desc: "Explore the double helix structure and base pairs of DNA.",
+    link: "/simulations/dna",
+    icon: <div className="text-amber-400 font-bold text-xl">DNA</div>,
+    gradient: "from-amber-500/20 to-orange-500/20"
   }
 ];
 
