@@ -11,6 +11,7 @@ import { simulationData } from '@/data/simulations';
 // This controls the ORDER of sections on the page
 const SECTIONS = [
   { id: 'General', title: 'General Chemistry', icon: Beaker, color: 'amber' },
+  { id: 'Inorganic', title: 'p-Block & d/f-Block Elements', icon: Layers, color: 'sky' },
   { id: 'Organic', title: 'Organic Chemistry', subtitle: '(Grade 12)', icon: Hexagon, color: 'teal' },
   { id: 'Biomolecules', title: 'Biomolecules', icon: Dna, color: 'rose' },
   { id: 'Electrochemistry', title: 'Electrochemistry', icon: Zap, color: 'lime' },

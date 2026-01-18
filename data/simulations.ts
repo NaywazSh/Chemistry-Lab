@@ -27,6 +27,13 @@ export const simulationData: Simulation[] = [
   { id: "states-of-matter", title: "States of Matter", desc: "Phase changes: Solid, Liquid, Gas.", isPremium: true, icon: Snowflake, color: "blue", category: "General" },
   { id: "titration", title: "Acid-Base Titration", desc: "Neutralization with pH indicators.", isPremium: true, icon: Droplets, color: "pink", category: "General" },
 
+// --- INORGANIC CHEMISTRY (p-Block & d/f-Block) ---
+  { id: "electronic-config", title: "Electronic Configurations", desc: "Orbital filling rules, shielding effect, and stability of half-filled subshells.", isPremium: true, icon: Layers, color: "sky", category: "Inorganic" },
+  { id: "compound-prep", title: "Preparation Methods", desc: "Industrial synthesis: Haber Process (NH₃) and Contact Process (H₂SO₄).", isPremium: true, icon: FlaskRound, color: "sky", category: "Inorganic" },
+  { id: "oxidation-states", title: "Oxidation States", desc: "Variable oxidation states in transition metals and stability trends.", isPremium: true, icon: Activity, color: "sky", category: "Inorganic" },
+  { id: "ion-colours", title: "Colours of Ions", desc: "d-d transitions and Crystal Field Theory explaining solution colors.", isPremium: true, icon: Filter, color: "sky", category: "Inorganic" },
+  { id: "lanthanoid-contraction", title: "Lanthanoid Contraction", desc: "Atomic radii trends and consequences in 4f series.", isPremium: true, icon: Component, color: "sky", category: "Inorganic" },
+ 
   // --- ORGANIC CHEMISTRY (Grade 12) ---
   { id: "cannizzaro", title: "Cannizzaro Reaction", desc: "Disproportionation of aldehydes.", isPremium: true, icon: FlaskRound, color: "teal", category: "Organic" },
   { id: "aldol", title: "Aldol Condensation", desc: "Formation of β-hydroxy aldehydes.", isPremium: true, icon: Layers, color: "teal", category: "Organic" },
