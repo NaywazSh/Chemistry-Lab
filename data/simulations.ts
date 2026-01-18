@@ -51,7 +51,7 @@ export const simulationData: Simulation[] = [
 
   //--- ELECTRO CHEMISTRY (New Section)
 { id: "galvanic-cell", title: "Galvanic/Voltaic Cell", desc: "Redox reactions producing electricity.", isPremium: true, icon: Battery, color: "lime", category: "Electrochemistry" },
-{ id: "standard-electrode-potentials", title: "Standard Electrode Potentials", desc: "Measuring voltage under standard conditions ($25°C$, $1M$, $1 atm$).", isPremium: true, icon: Thermometer, color: "blue", category: "Electrochemistry" },
+{ id: "standard-electrode-potentials", title: "Standard Electrode Potentials", desc: "Measuring voltage under standard conditions (25°C, 1M, 1 atm).", isPremium: true, icon: Thermometer, color: "blue", category: "Electrochemistry" },
 { id: "electrochemical-series", title: "Electrochemical Series", desc: "Arrangement of elements by their standard reduction potentials.", isPremium: false, icon:ZapOff, color: "purple", category: "Electrochemistry" },
 { id: "electrolytic-cell", title: "Electrolytic Cell", desc: "Using electrical energy to drive non-spontaneous chemical reactions.", isPremium: true, icon: Zap, color: "yellow", category: "Electrochemistry" },
 { id: "kohlrauschs-law", title: "Kohlrausch's Law", desc: "Limiting molar conductivity of electrolytes at infinite dilution.", isPremium: false, icon: Activity, color: "orange", category: "Electrochemistry" },
