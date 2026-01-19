@@ -101,7 +101,7 @@ function ConductivityMeasurement({ ion1, ion2 }: { ion1: string; ion2: string })
           anchorX="center"
           anchorY="middle"
         >
-          Λₘ° = λ⁺ + λ⁻
+          Λm° = λ+  + λ-
         </Text>
       </group>
     </group>
@@ -170,7 +170,7 @@ export default function KohlrauschLawPage() {
     { ion: "Na+", value: 50.1, color: "#3b82f6" },
     { ion: "K+", value: 73.5, color: "#8b5cf6" },
     { ion: "Cl-", value: 76.3, color: "#10b981" },
-    { ion: "NO3⁻", value: 71.4, color: "#06b6d4" },
+    { ion: "NO3-", value: 71.4, color: "#06b6d4" },
   ];
 
   return (
