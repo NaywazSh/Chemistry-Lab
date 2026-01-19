@@ -144,11 +144,11 @@ export default function StandardPotentialPage() {
         <group position={[0, -1, 0]}>
           
           {/* --- LEFT: ZINC HALF-CELL --- */}
-          <Beaker position={[-1.5, 0, 0]} color="#cbd5e1" label="1M ZnSO₄ (298 K)" />
+          <Beaker position={[-1.5, 0, 0]} color="#cbd5e1" label="1M ZnSO4 (298 K)" />
           <ZincElectrode position={[-1.5, 1, 0]} />
           
           {/* --- RIGHT: S.H.E. (Reference) --- */}
-          <Beaker position={[1.5, 0, 0]} color="#dbeafe" label="1M H⁺ (HCl)" />
+          <Beaker position={[1.5, 0, 0]} color="#dbeafe" label="1M H+ (HCl)" />
           <SHE position={[1.5, 1, 0]} />
 
           {/* --- CONNECTIONS --- */}
