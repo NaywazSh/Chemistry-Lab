@@ -39,6 +39,7 @@ export const simulationData: Simulation[] = [
   { id: "lanthanoid-contraction", title: "Lanthanoid Contraction", desc: "Atomic radii trends and consequences in 4f series.", isPremium: true, icon: Component, color: "sky", category: "Inorganic" },
 
   // --- ORGANIC CHEMISTRY (Grade 12) ---
+    { id: "benzene-ring", title: "Benzene Ring (C₆H₆)", desc: "Understand how Benzene Ring (C₆H₆) formed.", isPremium: true, icon: Hexagon, color: "green", category: "Organic" },
   { id: "cannizzaro", title: "Cannizzaro Reaction", desc: "Disproportionation of aldehydes.", isPremium: true, icon: FlaskRound, color: "teal", category: "Organic" },
   { id: "aldol", title: "Aldol Condensation", desc: "Formation of β-hydroxy aldehydes.", isPremium: true, icon: Layers, color: "teal", category: "Organic" },
   { id: "clemmensen", title: "Clemmensen Reduction", desc: "Ketones to alkanes using Zn-Hg.", isPremium: true, icon: TestTube2, color: "teal", category: "Organic" },
