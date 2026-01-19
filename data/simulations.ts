@@ -1,10 +1,10 @@
-import { CubeCamera } from '@react-three/drei';
 import { 
   Atom, FlaskConical, Microscope, Dna, Flame, Zap, Snowflake, Droplets, 
   Hexagon, Layers, TestTube2, Workflow, Filter, FlaskRound, 
   Component, Bean, Battery, Globe, Activity, Thermometer, Link2, 
-  // NEW ICONS ADDED HERE:
-  FileText, Split, Box, Scale, Timer, Hammer, RefreshCw
+  FileText, Split, Box, Scale, Timer, Hammer, RefreshCw,
+  // NEW ICONS FOR SALT ANALYSIS:
+  ScanSearch, ListOrdered, Palette, CheckCircle2, Beaker
 } from 'lucide-react';
 
 export type Simulation = {
@@ -66,6 +66,13 @@ export const simulationData: Simulation[] = [
   { id: "kohlrauschs-law", title: "Kohlrausch's Law", desc: "Limiting molar conductivity.", isPremium: true, icon: Activity, color: "lime", category: "Electrochemistry" },
   { id: "conductivity-formulas", title: "Conductivity Formulas", desc: "Mathematical relations for conductivity.", isPremium: true, icon: Component, color: "lime", category: "Electrochemistry" },
 
+    // --- QUALITATIVE ANALYSIS (SALT ANALYSIS) - UPDATED ---
+  { id: "cation-anion-id", title: "Cation & Anion ID", desc: "Systematic identification through specific reagent tests.", isPremium: true, icon: ScanSearch, color: "violet", category: "Qualitative Analysis" },
+  { id: "group-reagents", title: "Group Reagents", desc: "Classification of Cations into Groups I-VI.", isPremium: true, icon: ListOrdered, color: "violet", category: "Qualitative Analysis" },
+  { id: "color-changes", title: "Colour Changes", desc: "Visual guide to flame tests and solution colors.", isPremium: true, icon: Palette, color: "violet", category: "Qualitative Analysis" },
+  { id: "confirmatory-tests", title: "Confirmatory Tests", desc: "Specific reactions to confirm ion presence.", isPremium: true, icon: CheckCircle2, color: "violet", category: "Qualitative Analysis" },
+  { id: "precipitation-reactions", title: "Precipitation Reactions", desc: "Formation of insoluble salts and Ksp logic.", isPremium: true, icon: Beaker, color: "violet", category: "Qualitative Analysis" },
+  
   // --- ORGANIC CHEMISTRY: BASIC PRINCIPLES (GOC) ---
   { id: "iupac-basics", title: "IUPAC Nomenclature", desc: "Rules for naming alkanes, alkenes, and functional groups.", isPremium: true, icon: FileText, color: "orange", category: "GOC" },
   { id: "isomerism-intro", title: "Structural Isomerism", desc: "Chain, Position, and Functional isomers.", isPremium: true, icon: Split, color: "orange", category: "GOC" },
@@ -89,7 +96,6 @@ export const simulationData: Simulation[] = [
   { id: "balancing-equations", title: "Balancing Equations", desc: "Law of conservation of mass in reactions.", isPremium: true, icon: RefreshCw, color: "blue", category: "Reactions" },
 
   // --- FUTURE SECTIONS ---
-  { id: "salt-analysis", title: "Cation Analysis", desc: "Flame tests and precipitate colors.", isPremium: true, icon: Filter, color: "violet", category: "Qualitative Analysis" },
   { id: "polymers", title: "Polymerization", desc: "Addition vs Condensation polymers.", isPremium: true, icon: Activity, color: "indigo", category: "Polymers" },
   { id: "thermodynamics", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
 ];
