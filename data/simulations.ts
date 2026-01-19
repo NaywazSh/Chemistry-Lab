@@ -1,3 +1,4 @@
+import { CubeCamera } from '@react-three/drei';
 import { 
   Atom, FlaskConical, Microscope, Dna, Flame, Zap, Snowflake, Droplets, 
   Hexagon, Layers, TestTube2, Workflow, Filter, FlaskRound, 
@@ -22,6 +23,7 @@ export const simulationData: Simulation[] = [
   { id: "molecules", title: "Molecular Geometry", desc: "VSEPR theory explorer: Water, Ammonia, Methane.", isPremium: false, icon: FlaskConical, color: "purple", category: "Free" },
   { id: "crystals", title: "Crystalline Solids", desc: "Explore FCC, BCC, and HCP lattice structures.", isPremium: false, icon: Microscope, color: "emerald", category: "Free" },
   { id: "dna", title: "Biochemistry: DNA", desc: "Double helix structure and base pairs.", isPremium: false, icon: Dna, color: "amber", category: "Free" },
+  { id: "co2", title: "Carbon Dioxide (CO₂) Molecule", desc: "Atomic structure of CO2.", isPremium: false, icon: CubeCamera , color: "white", category: "Free" },
 
   // --- GENERAL CHEMISTRY ---
   { id: "combustion", title: "Combustion Reaction", desc: "Hydrocarbon burning in oxygen.", isPremium: true, icon: Flame, color: "orange", category: "General" },
