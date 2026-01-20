@@ -144,7 +144,7 @@ const AspirinStructure = ({ showMnemonic }: { showMnemonic: boolean }) => {
             <meshStandardMaterial color={GROUP_COLORS.ester} />
           </Cylinder>
           <Text position={[0, -0.8, 0]} fontSize={0.25} color={GROUP_COLORS.ester}>
-            OCOCH₃
+            OCOCH3
           </Text>
         </group>
       </group>
