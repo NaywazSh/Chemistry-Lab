@@ -102,6 +102,7 @@ export const simulationData: Simulation[] = [
 { id: "drug-structures-memory", title: "Drug Structure Memory", desc: "Visual mnemonics for memorizing complex drug structures lacking logic.", isPremium: true, icon: Brain, color: "indigo", category: "Polymers" },
 { id: "drug-classes", title: "Drug Classes", desc: "3D visual guide to Antipyretics, Analgesics, and Antibiotics.", isPremium: true, icon: Pill, color: "indigo", category: "Polymers" },
 { id: "monomer-polymer-pairs", title: "Monomer-Polymer Pairs", desc: "Interactive matching: Ethylene → Polythene, Styrene → Polystyrene.", isPremium: true, icon: Link, color: "indigo", category: "Polymers" },
+{ id: "monomer-polymer-more", title: "Monomer-Polymer More Pairs", desc: "Interactive Visuals: Structures & More.", isPremium: true, icon: Link, color: "indigo", category: "Polymers" },
 { id: "polymer-uses", title: "Polymer Applications", desc: "Specific industrial uses: PVC pipes, Teflon coatings, Nylon fibers.", isPremium: true, icon: ShoppingBag, color: "indigo", category: "Polymers" },
 
   // --- FUTURE SECTIONS ---
