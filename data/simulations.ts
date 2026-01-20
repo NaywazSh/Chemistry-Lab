@@ -104,7 +104,8 @@ export const simulationData: Simulation[] = [
 { id: "monomer-polymer-pairs", title: "Monomer-Polymer Pairs", desc: "Interactive matching: Ethylene → Polythene, Styrene → Polystyrene.", isPremium: true, icon: Link, color: "indigo", category: "Polymers" },
 { id: "monomer-polymer-more", title: "Monomer-Polymer More Pairs", desc: "Interactive Visuals: Structures & More.", isPremium: true, icon: Link, color: "indigo", category: "Polymers" },
 { id: "polymer-uses", title: "Polymer Applications", desc: "Specific industrial uses: PVC pipes, Teflon coatings, Nylon fibers.", isPremium: true, icon: ShoppingBag, color: "indigo", category: "Polymers" },
-
+{ id: "polymer-str", title: "Polymer Structures", desc: "Polymer Strucutures in Real Life- PVC, Teflon etc..", isPremium: true, icon: ShoppingBag, color: "indigo", category: "Polymers" },
+{ id: "polymer-database", title: "Polymer Database Knowledge", desc: "Specific industrial uses: Easy Illustration in Short.", isPremium: true, icon: ShoppingBag, color: "indigo", category: "Polymers" },
   // --- FUTURE SECTIONS ---
  { id: "thermodynamics", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
 ];
