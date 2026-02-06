@@ -111,6 +111,7 @@ export const simulationData: Simulation[] = [
   // --- FUTURE SECTIONS ---
 // --- THERMODYNAMICS ---
 { id: "carnot-cycle", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
+{ id: "carnot-simple", title: "Carnot Simplified", desc: "PV diagrams with simple entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
 { id: "gibbs-energy", title: "Gibbs Free Energy (ΔG)", desc: "Interactive ΔG = ΔH - TΔS visualizer. Explore how Enthalpy, Entropy, and Temperature drive spontaneity.", isPremium: true, icon: Scale, color: "red", category: "Thermodynamics" },
 { id: "sign-conventions", title: "Sign Conventions & System", desc: "Abstract logic made visual: Work (w) and Heat (q) flow conventions in open, closed, and isolated systems.", isPremium: true, icon: ArrowRightLeft, color: "red", category: "Thermodynamics" },
 { id: "thermo-formulas", title: "Thermodynamic Formulas", desc: "Master key formulas: First Law, Hess's Law, and Heat Capacity with interactive variables.", isPremium: true, icon: Sigma, color: "red", category: "Thermodynamics" },
