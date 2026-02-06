@@ -110,7 +110,7 @@ export const simulationData: Simulation[] = [
 { id: "polymer-database", title: "Polymer Database Knowledge", desc: "Specific industrial uses: Easy Illustration in Short.", isPremium: true, icon: ShoppingBag, color: "indigo", category: "Polymers" },
   // --- FUTURE SECTIONS ---
 // --- THERMODYNAMICS ---
-{ id: "thermodynamics", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
+{ id: "carnot-cycle", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
 { id: "gibbs-energy", title: "Gibbs Free Energy (ΔG)", desc: "Interactive ΔG = ΔH - TΔS visualizer. Explore how Enthalpy, Entropy, and Temperature drive spontaneity.", isPremium: true, icon: Scale, color: "red", category: "Thermodynamics" },
 { id: "sign-conventions", title: "Sign Conventions & System", desc: "Abstract logic made visual: Work (w) and Heat (q) flow conventions in open, closed, and isolated systems.", isPremium: true, icon: ArrowRightLeft, color: "red", category: "Thermodynamics" },
 { id: "thermo-formulas", title: "Thermodynamic Formulas", desc: "Master key formulas: First Law, Hess's Law, and Heat Capacity with interactive variables.", isPremium: true, icon: Sigma, color: "red", category: "Thermodynamics" },
