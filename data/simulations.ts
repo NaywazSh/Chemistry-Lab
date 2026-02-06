@@ -8,7 +8,7 @@ import {
   // ... keep existing imports ...
   GitMerge, Brain, Pill, Link, ShoppingBag, 
   // ... icons for thermodynamics ...
-  Scale, ArrowRightLeft, Sigma 
+  ArrowRightLeft, Sigma 
 } from 'lucide-react';
 
 export type Simulation = {
