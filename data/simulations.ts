@@ -7,6 +7,8 @@ import {
   ScanSearch, ListOrdered, Palette, CheckCircle2, Beaker,
   // ... keep existing imports ...
   GitMerge, Brain, Pill, Link, ShoppingBag 
+  // ... icons for thermodynamics ...
+  Scale, ArrowRightLeft, Sigma 
 } from 'lucide-react';
 
 export type Simulation = {
@@ -107,5 +109,10 @@ export const simulationData: Simulation[] = [
 { id: "polymer-str", title: "Polymer Structures", desc: "Polymer Strucutures in Real Life- PVC, Teflon etc..", isPremium: true, icon: ShoppingBag, color: "indigo", category: "Polymers" },
 { id: "polymer-database", title: "Polymer Database Knowledge", desc: "Specific industrial uses: Easy Illustration in Short.", isPremium: true, icon: ShoppingBag, color: "indigo", category: "Polymers" },
   // --- FUTURE SECTIONS ---
- { id: "thermodynamics", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
+// --- THERMODYNAMICS ---
+{ id: "thermodynamics", title: "Carnot Cycle", desc: "PV diagrams and entropy changes.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
+{ id: "gibbs-energy", title: "Gibbs Free Energy (ΔG)", desc: "Interactive ΔG = ΔH - TΔS visualizer. Explore how Enthalpy, Entropy, and Temperature drive spontaneity.", isPremium: true, icon: Scale, color: "red", category: "Thermodynamics" },
+{ id: "sign-conventions", title: "Sign Conventions & System", desc: "Abstract logic made visual: Work (w) and Heat (q) flow conventions in open, closed, and isolated systems.", isPremium: true, icon: ArrowRightLeft, color: "red", category: "Thermodynamics" },
+{ id: "thermo-formulas", title: "Thermodynamic Formulas", desc: "Master key formulas: First Law, Hess's Law, and Heat Capacity with interactive variables.", isPremium: true, icon: Sigma, color: "red", category: "Thermodynamics" },
+{ id: "enthalpy-formation", title: "Enthalpies of Formation", desc: "Standard enthalpies of formation (ΔHf°) and calculating reaction energetics in 3D space.", isPremium: true, icon: Thermometer, color: "red", category: "Thermodynamics" },
 ];
