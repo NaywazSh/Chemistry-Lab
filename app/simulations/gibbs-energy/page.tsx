@@ -334,9 +334,9 @@ function GibbsEquationVisualizer({
             </div>
           </div>
           
-          {/* Rule of thumb */}
+          {/* Rule of thumb - FIXED: Use HTML entities or wrap in JavaScript expression */}
           <div className="mt-4 text-xs text-gray-400 text-center">
-            ΔG < 0: Spontaneous | ΔG > 0: Non-spontaneous | ΔG = 0: Equilibrium
+            ΔG &lt; 0: Spontaneous | ΔG &gt; 0: Non-spontaneous | ΔG = 0: Equilibrium
           </div>
         </div>
       </Html>
@@ -845,7 +845,7 @@ export default function GibbsFreeEnergyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
                   <div>
-                    <div className="text-sm font-bold text-white">ΔH < 0, ΔS > 0</div>
+                    <div className="text-sm font-bold text-white">ΔH &lt; 0, ΔS &gt; 0</div>
                     <div className="text-xs text-gray-400">Always spontaneous</div>
                   </div>
                 </div>
@@ -853,7 +853,7 @@ export default function GibbsFreeEnergyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
                   <div>
-                    <div className="text-sm font-bold text-white">ΔH > 0, ΔS < 0</div>
+                    <div className="text-sm font-bold text-white">ΔH &gt; 0, ΔS &lt; 0</div>
                     <div className="text-xs text-gray-400">Never spontaneous</div>
                   </div>
                 </div>
@@ -861,7 +861,7 @@ export default function GibbsFreeEnergyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div>
-                    <div className="text-sm font-bold text-white">ΔH < 0, ΔS < 0</div>
+                    <div className="text-sm font-bold text-white">ΔH &lt; 0, ΔS &lt; 0</div>
                     <div className="text-xs text-gray-400">Spontaneous at low T</div>
                   </div>
                 </div>
@@ -869,7 +869,7 @@ export default function GibbsFreeEnergyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 rounded-full bg-blue-500"></div>
                   <div>
-                    <div className="text-sm font-bold text-white">ΔH > 0, ΔS > 0</div>
+                    <div className="text-sm font-bold text-white">ΔH &gt; 0, ΔS &gt; 0</div>
                     <div className="text-xs text-gray-400">Spontaneous at high T</div>
                   </div>
                 </div>
