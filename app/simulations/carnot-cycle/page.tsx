@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { 
-  Sphere, Cylinder, Box, Float, Html, Line, Text, Plane,
-  Tube, Ring, Billboard, Torus, Cone
+  Sphere, Cylinder, Box, Html, Float, Line, Text, Plane,
+  Tube, Ring, Cone
 } from '@react-three/drei';
 import SimulationLayout from '@/components/SimulationLayout';
 import * as THREE from 'three';
@@ -26,7 +26,6 @@ const GAS_CONSTANT = 8.314; // J/(mol·K)
 // --- Components ---
 
 function GasParticle({ 
-  type = 'molecule', 
   position, 
   velocity, 
   color,
@@ -131,13 +130,13 @@ function PistonCylinder({
       
       {/* Process label */}
       <Html position={[0, 2, 0]}>
-        <div className="bg-black/80 px-3 py-1 rounded-lg border-2 backdrop-blur-sm" 
+        <div className="bg-black/80 px-3 py-1 rounded-lg border-2 backdrop-blur-sm min-w-[150px]" 
              style={{ borderColor: processColor }}>
           <div className="text-sm font-bold" style={{ color: processColor }}>
             {process.replace('-', ' ').toUpperCase()}
           </div>
           <div className="text-xs text-gray-300">
-            P: {pressure.toFixed(1)} kPa | V: {volume.toFixed(2)} L | T: {temperature.toFixed(0)} K
+            P: {pressure.toFixed(1)} kPa <br/> V: {volume.toFixed(2)} L <br/> T: {temperature.toFixed(0)} K
           </div>
         </div>
       </Html>
@@ -164,10 +163,11 @@ function PistonCylinder({
   );
 }
 
+// FIX: Removed incorrect type syntax inside destructuring
 function DiagramCurve({
-  type: 'pv' | 'ts',
-  process: ProcessType,
-  points: THREE.Vector3[],
+  type, 
+  process,
+  points,
   color,
   showArea = false
 }: {
@@ -226,7 +226,9 @@ function CarnotCycleDiagram({
   type = 'pv',
   position = [0, 0, 0],
   scale = 1,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   showWork = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   showHeat = false
 }: {
   type?: DiagramType;
@@ -238,6 +240,7 @@ function CarnotCycleDiagram({
   // State for cycle parameters
   const [Th, setTh] = useState(500); // Hot reservoir temperature (K)
   const [Tc, setTc] = useState(300); // Cold reservoir temperature (K)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [V1, setV1] = useState(1.0); // Initial volume (L)
   const [gamma, setGamma] = useState(1.4); // Adiabatic index (Cp/Cv)
   
@@ -413,14 +416,14 @@ function CarnotCycleDiagram({
             <meshStandardMaterial color="#ef4444" transparent opacity={0.3} />
           </Plane>
           <Html position={[-3.5, Th/500 - 1, 0]}>
-            <div className="bg-red-500/80 px-2 py-1 rounded text-sm">T_h = {Th} K</div>
+            <div className="bg-red-500/80 px-2 py-1 rounded text-sm w-max">T_h = {Th} K</div>
           </Html>
           
           <Plane args={[0.5, 3]} position={[-3, Tc/500 - 1, 0]} rotation={[0, 0, 0]}>
             <meshStandardMaterial color="#3b82f6" transparent opacity={0.3} />
           </Plane>
           <Html position={[-3.5, Tc/500 - 1, 0]}>
-            <div className="bg-blue-500/80 px-2 py-1 rounded text-sm">T_c = {Tc} K</div>
+            <div className="bg-blue-500/80 px-2 py-1 rounded text-sm w-max">T_c = {Tc} K</div>
           </Html>
           
           {/* Carnot Cycle TS Curves */}
@@ -455,7 +458,7 @@ function CarnotCycleDiagram({
               <div className="text-2xl font-mono text-green-400">
                 η = {cycleData.calculations.efficiency.toFixed(3)}
               </div>
-              <div className="text-xs text-gray-400">η = 1 - T_c/T_h = 1 - {Tc}/{Th}</div>
+              <div className="text-xs text-gray-400">η = 1 - T_c/T_h</div>
             </div>
             
             <div className="space-y-2">
@@ -464,19 +467,6 @@ function CarnotCycleDiagram({
                 W_net = {cycleData.calculations.W.toFixed(1)} J
               </div>
               <div className="text-xs text-gray-400">W = Q_h - Q_c</div>
-            </div>
-          </div>
-          
-          <div className="mt-3 pt-3 border-t border-slate-700">
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div className="text-red-400">Q_h (Heat In):</div>
-              <div className="text-white">{cycleData.calculations.Qh.toFixed(1)} J</div>
-              
-              <div className="text-blue-400">Q_c (Heat Out):</div>
-              <div className="text-white">{cycleData.calculations.Qc.toFixed(1)} J</div>
-              
-              <div className="text-green-400">Work Ratio:</div>
-              <div className="text-white">{(cycleData.calculations.W / cycleData.calculations.Qh * 100).toFixed(1)}%</div>
             </div>
           </div>
         </div>
@@ -518,25 +508,6 @@ function CarnotCycleDiagram({
                 onChange={(e) => setTc(parseInt(e.target.value))}
                 className="w-full accent-blue-500"
               />
-            </div>
-            
-            <div>
-              <label className="text-xs text-gray-300 flex justify-between">
-                <span>Adiabatic Index (γ)</span>
-                <span className="text-green-400">{gamma.toFixed(2)}</span>
-              </label>
-              <input
-                type="range"
-                min="1.2"
-                max="1.67"
-                step="0.01"
-                value={gamma}
-                onChange={(e) => setGamma(parseFloat(e.target.value))}
-                className="w-full accent-green-500"
-              />
-              <div className="text-xs text-gray-400 mt-1">
-                γ = C_p/C_v (1.4 for diatomic gases)
-              </div>
             </div>
           </div>
         </div>
@@ -592,7 +563,7 @@ function ProcessVisualization({
   
   return (
     <group position={position}>
-      <Html position={[0, 1.5, 0]}>
+      <Html position={[0, 1.5, 0]} center>
         <div className="bg-black/80 p-4 rounded-xl border-2 backdrop-blur-sm w-64"
              style={{ borderColor: processConfig.color }}>
           <div className="text-lg font-bold mb-2" style={{ color: processConfig.color }}>
@@ -642,7 +613,7 @@ function EntropyVisualization({
   
   return (
     <group position={position}>
-      <Html position={[0, 3, 0]}>
+      <Html position={[0, 3, 0]} center>
         <div className="bg-black/80 p-4 rounded-xl border-2 border-purple-500/50 backdrop-blur-sm">
           <div className="text-lg font-bold text-purple-400 mb-2">Entropy & Disorder</div>
           <div className="text-sm text-gray-300">
@@ -681,8 +652,8 @@ function EntropyVisualization({
       </group>
       
       {/* Entropy control */}
-      <Html position={[0, -2.5, 0]}>
-        <div className="bg-slate-900/80 p-3 rounded-xl border border-slate-700">
+      <Html position={[0, -2.5, 0]} center>
+        <div className="bg-slate-900/80 p-3 rounded-xl border border-slate-700 w-64">
           <div className="text-white text-sm mb-2">Adjust Disorder (Entropy):</div>
           <input
             type="range"
@@ -744,7 +715,7 @@ export default function CarnotCyclePage() {
               />
               
               {/* Process selector */}
-              <Html position={[0, -3, 0]}>
+              <Html position={[0, -3, 0]} center>
                 <div className="bg-black/80 p-4 rounded-xl backdrop-blur-sm border border-slate-700">
                   <div className="text-white font-bold mb-3">Select Process Step</div>
                   <div className="grid grid-cols-2 gap-2">
@@ -785,7 +756,7 @@ export default function CarnotCyclePage() {
               />
               
               {/* Diagram Type Selector */}
-              <Html position={[0, -5, 0]}>
+              <Html position={[0, -5, 0]} center>
                 <div className="bg-black/80 p-3 rounded-xl backdrop-blur-sm">
                   <div className="text-white text-sm mb-2">Diagram Type:</div>
                   <div className="flex gap-2">
@@ -813,84 +784,24 @@ export default function CarnotCyclePage() {
             <EntropyVisualization position={[0, 0, 0]} />
           )}
           
-          {/* Carnot Efficiency Formula */}
-          <Html position={[5, 2, 0]}>
-            <div className="bg-black/80 p-4 rounded-xl border-2 border-yellow-500/50 backdrop-blur-sm min-w-[280px]">
-              <div className="text-lg font-bold text-yellow-400 mb-2">Carnot Efficiency</div>
-              <div className="text-2xl font-mono text-white text-center mb-3">
-                η = 1 - T_c/T_h
-              </div>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-300">η</span>
-                  <span className="text-gray-400">Maximum efficiency</span>
-                  <span className="text-blue-300">dimensionless</span>
+          {/* Carnot Efficiency Formula - Only show in diagram/process view */}
+          {viewMode !== 'entropy' && (
+            <Html position={[5, 2, 0]} center>
+              <div className="bg-black/80 p-4 rounded-xl border-2 border-yellow-500/50 backdrop-blur-sm min-w-[280px]">
+                <div className="text-lg font-bold text-yellow-400 mb-2">Carnot Efficiency</div>
+                <div className="text-2xl font-mono text-white text-center mb-3">
+                  η = 1 - T_c/T_h
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-300">T_c</span>
-                  <span className="text-gray-400">Cold reservoir temp</span>
-                  <span className="text-blue-300">K</span>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-300">η</span>
+                    <span className="text-gray-400">Max efficiency</span>
+                    <span className="text-blue-300">dimensionless</span>
+                  </div>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-300">T_h</span>
-                  <span className="text-gray-400">Hot reservoir temp</span>
-                  <span className="text-blue-300">K</span>
-                </div>
-              </div>
-              <div className="text-xs text-gray-400 mt-3">
-                This is the maximum possible efficiency for any heat engine operating between these temperatures.
-              </div>
-            </div>
-          </Html>
-          
-          {/* Key Concepts Panel */}
-          <Html position={[-5, 2, 0]}>
-            <div className="bg-black/80 p-4 rounded-xl backdrop-blur-sm border border-slate-700 min-w-[280px]">
-              <div className="text-lg font-bold text-white mb-3">Key Concepts</div>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-red-500 mt-1.5"></div>
-                  <div>
-                    <div className="text-sm font-bold text-red-400">Reversible Process</div>
-                    <div className="text-xs text-gray-400">Carnot cycle consists of reversible processes only</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500 mt-1.5"></div>
-                  <div>
-                    <div className="text-sm font-bold text-green-400">Maximum Efficiency</div>
-                    <div className="text-xs text-gray-400">No engine can be more efficient than Carnot</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-500 mt-1.5"></div>
-                  <div>
-                    <div className="text-sm font-bold text-blue-400">Entropy Change</div>
-                    <div className="text-xs text-gray-400">Net entropy change = 0 for reversible cycle</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-purple-500 mt-1.5"></div>
-                  <div>
-                    <div className="text-sm font-bold text-purple-400">Area = Work</div>
-                    <div className="text-xs text-gray-400">Area inside PV diagram = Net work done</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </Html>
-          
-          {/* Cycle Animation Indicator */}
-          <group position={[0, -1, 5]}>
-            <Ring args={[0.8, 1, 32]} rotation={[Math.PI/2, 0, 0]}>
-              <meshBasicMaterial color="#3b82f6" transparent opacity={0.2} side={THREE.DoubleSide} />
-            </Ring>
-            <Html center>
-              <div className="text-sm text-blue-400 font-bold bg-black/70 px-3 py-1 rounded">
-                Cycle Animation Active
               </div>
             </Html>
-          </group>
+          )}
         </group>
       </Float>
     </SimulationLayout>
