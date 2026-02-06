@@ -6,7 +6,7 @@ import {
   // NEW ICONS FOR SALT ANALYSIS:
   ScanSearch, ListOrdered, Palette, CheckCircle2, Beaker,
   // ... keep existing imports ...
-  GitMerge, Brain, Pill, Link, ShoppingBag 
+  GitMerge, Brain, Pill, Link, ShoppingBag, 
   // ... icons for thermodynamics ...
   Scale, ArrowRightLeft, Sigma 
 } from 'lucide-react';
