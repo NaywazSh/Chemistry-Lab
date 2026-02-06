@@ -3,8 +3,7 @@
 import React, { useRef, useState, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { 
-  Sphere, Cylinder, Box, Html, Float, Line, Text, Plane,
-  Tube, Ring, Cone, Billboard
+  Sphere, Cylinder, Box, Html, Float, Line, Text, Plane, Cone
 } from '@react-three/drei';
 import SimulationLayout from '@/components/SimulationLayout';
 import * as THREE from 'three';
@@ -95,8 +94,6 @@ function EnergyBar({
 }
 
 function PhaseChangeVisualization({
-  deltaH,
-  deltaS,
   temperature,
   position = [0, 0, 0]
 }: {
@@ -123,7 +120,7 @@ function PhaseChangeVisualization({
     
     // Animate particles based on phase
     if (particlesRef.current) {
-      particlesRef.current.children.forEach((particle, i) => {
+      particlesRef.current.children.forEach((particle) => {
         const speed = currentPhase === 'solid' ? 0.1 : 
                       currentPhase === 'liquid' ? 0.5 : 2;
         
@@ -133,7 +130,9 @@ function PhaseChangeVisualization({
         
         // Boundary checking
         ['x', 'y', 'z'].forEach(axis => {
+          // @ts-ignore
           if (Math.abs(particle.position[axis]) > 1.5) {
+            // @ts-ignore
             particle.position[axis] *= -0.9;
           }
         });
@@ -201,7 +200,7 @@ function PhaseChangeVisualization({
       
       {/* Phase boundaries indicators */}
       <Html position={[-2, 0, 0]} center>
-        <div className="bg-slate-900/80 p-2 rounded text-xs border border-slate-700">
+        <div className="bg-slate-900/80 p-2 rounded text-xs border border-slate-700 w-32">
           <div className="text-blue-300">Melting: {meltingPoint} K</div>
           <div className="text-orange-300">Boiling: {boilingPoint} K</div>
         </div>
@@ -334,7 +333,7 @@ function GibbsEquationVisualizer({
             </div>
           </div>
           
-          {/* Rule of thumb - FIXED: Use HTML entities or wrap in JavaScript expression */}
+          {/* Rule of thumb - FIXED JSX SYNTAX */}
           <div className="mt-4 text-xs text-gray-400 text-center">
             ΔG &lt; 0: Spontaneous | ΔG &gt; 0: Non-spontaneous | ΔG = 0: Equilibrium
           </div>
@@ -529,7 +528,7 @@ function ReactionVisualization({
         </Cone>
         
         <Html position={[0, 0.5, 0]} center>
-          <div className="bg-black/80 px-3 py-1 rounded text-sm border border-yellow-500/50">
+          <div className="bg-black/80 px-3 py-1 rounded text-sm border border-yellow-500/50 whitespace-nowrap">
             {deltaG < 0 ? 'Spontaneous →' : '← Non-spontaneous'}
           </div>
         </Html>
@@ -579,7 +578,7 @@ function ReactionVisualization({
       
       {/* Energy released/absorbed */}
       <Html position={[0, -1, 0]} center>
-        <div className="bg-black/80 p-3 rounded-lg border-2 backdrop-blur-sm"
+        <div className="bg-black/80 p-3 rounded-lg border-2 backdrop-blur-sm whitespace-nowrap"
              style={{ borderColor: deltaG < 0 ? '#22c55e' : '#ef4444' }}>
           <div className="text-sm font-bold" style={{ color: deltaG < 0 ? '#22c55e' : '#ef4444' }}>
             {deltaG < 0 ? 'Energy Released' : 'Energy Required'}
@@ -625,7 +624,7 @@ export default function GibbsFreeEnergyPage() {
     { name: 'Spontaneous', deltaH: -50, deltaS: 0.1, temp: 298, color: '#22c55e' },
     { name: 'Non-spontaneous', deltaH: 50, deltaS: 0.1, temp: 298, color: '#ef4444' },
     { name: 'Entropy-driven', deltaH: 10, deltaS: 0.2, temp: 400, color: '#3b82f6' },
-    { name: 'Temperature Sensitive', deltaH: 10, deltaS: 0.05, temp: 500, color: '#f59e0b' },
+    { name: 'Temp Sensitive', deltaH: 10, deltaS: 0.05, temp: 500, color: '#f59e0b' },
     { name: 'Phase Change', deltaH: 6, deltaS: 0.022, temp: 273, color: '#8b5cf6' }
   ];
   
